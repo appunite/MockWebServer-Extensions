@@ -2,16 +2,17 @@ package com.appunite.mockwebserver_extension
 
 import com.appunite.mockwebserver_extension.util.MultipleFailuresError
 import com.appunite.mockwebserver_extension.util.ResponseGenerator
-import io.github.oshai.kotlinlogging.KotlinLogging
 import okhttp3.HttpUrl.Companion.toHttpUrl
 import okhttp3.mockwebserver.Dispatcher
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.RecordedRequest
-
-private const val TAG = "MockDispatcher"
-private val logger = KotlinLogging.logger {}
+import java.util.logging.Logger
 
 class MockDispatcher : Dispatcher() {
+
+    companion object {
+        val LOG: Logger = Logger.getLogger(MockDispatcher::class.java.name)
+    }
 
     data class Mock(val response: ResponseGenerator)
 
@@ -44,7 +45,7 @@ class MockDispatcher : Dispatcher() {
             return runMocks(mockRequest)
         } catch (e: Throwable) {
             errors.add(e)
-            logger.warn { TAG + e.message!! }
+            LOG.warning(e.message!!)
             return MockResponse().setResponseCode(404)
         }
     }

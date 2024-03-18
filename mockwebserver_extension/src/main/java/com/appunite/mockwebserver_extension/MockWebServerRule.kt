@@ -4,20 +4,22 @@ import com.appunite.mockwebserver_extension.intercept.TestInterceptor
 import com.appunite.mockwebserver_extension.intercept.UrlOverrideInterceptor
 import com.appunite.mockwebserver_extension.util.MultipleFailuresError
 import com.appunite.mockwebserver_extension.util.ResponseGenerator
-import io.github.oshai.kotlinlogging.KotlinLogging
 import okhttp3.Interceptor
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.rules.TestRule
 import org.junit.runner.Description
 import org.junit.runners.model.Statement
-
-private const val TAG = "MockWebServerRule"
-private val logger = KotlinLogging.logger {}
+import java.util.logging.Logger
 
 class MockWebServerRule(
-    private val interceptor: Interceptor? = null,
-    val dispatcher: MockDispatcher = MockDispatcher()
+    private val interceptor: Interceptor? = null
 ) : TestRule {
+
+    companion object {
+        val LOG: Logger = Logger.getLogger(MockWebServerRule::class.java.name)
+    }
+
+    private val dispatcher: MockDispatcher = MockDispatcher()
 
     fun register(response: ResponseGenerator) = dispatcher.register(response)
 
@@ -29,7 +31,7 @@ class MockWebServerRule(
                 MockWebServer().use { server ->
                     server.dispatcher = dispatcher
                     TestInterceptor.testInterceptor = interceptor ?: UrlOverrideInterceptor(server.url("/"))
-                    logger.info { TAG + "TestInterceptor installed" }
+                    LOG.info("TestInterceptor installed")
                     try {
                         base.evaluate()
                     } catch (e: Throwable) {
@@ -45,7 +47,7 @@ class MockWebServerRule(
                             )
                         }
                     } finally {
-                        logger.info { TAG + "TestInterceptor uninstalled" }
+                        LOG.info("TestInterceptor uninstalled")
                         TestInterceptor.testInterceptor = null
                     }
                 }

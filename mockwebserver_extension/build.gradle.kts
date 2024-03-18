@@ -22,7 +22,5 @@ dependencies {
     implementation("io.strikt:strikt-core:0.34.1")
     implementation("io.strikt:strikt-mockk:0.34.1")
 
-    implementation("io.github.oshai:kotlin-logging-jvm:5.1.0")
-
     testImplementation("junit:junit:4.13.2")
 }
