@@ -1,0 +1,80 @@
+# MockWebServer Extension
+
+An open source library with an extension for MockWebServer for even easier testing HTTP clients.
+
+## Download
+
+## Usage
+
+### Add a Network Security Configuration file
+
+#### Add `app/src/debug/res/xml/network_security_config.xml` file.
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">localhost</domain>
+    </domain-config>
+</network-security-config>
+```
+
+#### Add `network_security_config.xml` to the debug AndroidManifest.
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application android:networkSecurityConfig="@xml/network_security_config">
+    </application>
+</manifest>
+```
+
+### Add TestInterceptor to your HTTP Client.
+
+```kotlin
+// Ktor
+val client = HttpClient(OkHttp) {
+    expectSuccess = true
+    engine {
+        addInterceptor(TestInterceptor)
+    }
+    install(ContentNegotiation) {
+        json(
+            Json {
+                ignoreUnknownKeys = true
+            }
+        )
+    }
+}
+
+// Retrofit
+val okHttpClient = OkHttpClient.Builder()
+    .addInterceptor(TestInterceptor)
+    .build()
+
+val retrofit = Retrofit.Builder()
+    .baseUrl(baseUrl)
+    .client(okHttpClient)
+    .addConverterFactory(GsonConverterFactory.create(gson))
+    .build()
+```
+
+### Create a variable with MockWebServerRule in the test class.
+
+```kotlin
+@get:Rule
+var mockWebServer: MockWebServerRule = MockWebServerRule()
+```
+
+### To mock a request, use `register` method.
+
+```kotlin
+mockWebServer.register {
+    expectThat(it).url.path.isEqualTo("/fact")
+    jsonResponse("""{"fact": "Example fact about your cat."}""")
+}
+```
+
+You can check full example in the [app module](https://github.com/appunite/MockWebServer/tree/main/app/src).
+And more examples in the [Loudius - Android playground](https://github.com/appunite/Loudius) in the [app-shared-tests module](https://github.com/appunite/Loudius/tree/develop/app-shared-tests/src/main/java/com/appunite/loudius).
