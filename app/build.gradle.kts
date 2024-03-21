@@ -9,7 +9,7 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.appunite.mockwebserver"
+        applicationId = "com.appunite.mockwebserverextensions"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -54,8 +54,8 @@ android {
 
 dependencies {
 
-    androidTestImplementation(project(":mockwebserver_extension"))
-    implementation(project(":mockwebserver_extension"))
+    androidTestImplementation(project(":mockwebserver-extensions"))
+    implementation(project(":mockwebserver-extensions"))
 
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
