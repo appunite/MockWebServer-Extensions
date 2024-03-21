@@ -13,6 +13,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "MockWebServer"
+rootProject.name = "MockWebServer Extensions"
 include(":app")
-include(":mockwebserver_extension")
+include(":mockwebserver-extensions")
