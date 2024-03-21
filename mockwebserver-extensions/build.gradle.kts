@@ -9,7 +9,7 @@ publishing {
         create<MavenPublication>("maven") {
             groupId = "com.github.appunite.MockWebServer-Extensions"
             artifactId = "mockwebserver-extensions"
-            version = "master-SNAPSHOT"
+            version = "0.1.0"
 
             afterEvaluate {
                 from(components["java"])
