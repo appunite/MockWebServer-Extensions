@@ -1,8 +1,25 @@
-# MockWebServer Extension
+# MockWebServer Extensions
 
-An open source library with an extension for MockWebServer for even easier testing HTTP clients.
+The MockWebServer Extensions, provides a convenient solution for testing HTTP clients by extending MockWebServer functionalities. With easy integration into your testing environment, it allows for seamless mocking of server responses, facilitating comprehensive testing of HTTP client behaviors.
 
 ## Download
+
+Add it in your root build.gradle at the end of repositories or in settings.gradle:
+```kotlin
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+    }
+}
+```
+Add the dependency:
+```kotlin
+dependencies {
+        implementation 'com.github.appunite:MockWebServer-Extensions:0.1.0'
+}
+```
 
 ## Usage
 
