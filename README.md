@@ -2,26 +2,41 @@
 
 The MockWebServer Extensions, provides a convenient solution for testing HTTP clients by extending MockWebServer functionalities. With easy integration into your testing environment, it allows for seamless mocking of server responses, facilitating comprehensive testing of HTTP client behaviors.
 
-## Download
+## Usage
+
+### Create a variable with MockWebServerRule in the test class.
+
+```kotlin
+@get:Rule
+var mockWebServer: MockWebServerRule = MockWebServerRule()
+```
+
+### To mock a request, use `register` method.
+
+```kotlin
+mockWebServer.register {
+    expectThat(it).url.path.isEqualTo("/fact")
+    jsonResponse("""{"fact": "Example fact about your cat."}""")
+}
+```
+
+## Requirements
+
+### Download
 
 Add it in your root build.gradle at the end of repositories or in settings.gradle:
 ```kotlin
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        mavenCentral()
-        maven { url 'https://jitpack.io' }
-    }
-}
-```
-Add the dependency:
-```kotlin
-dependencies {
-        implementation 'com.github.appunite:MockWebServer-Extensions:0.1.0'
+repositories {
+    maven { url 'https://jitpack.io' }
 }
 ```
 
-## Usage
+Add the dependency:
+```kotlin
+dependencies {
+    androidTestImplementation 'com.github.appunite:MockWebServer-Extensions:0.1.0'
+}
+```
 
 ### Add a Network Security Configuration file
 
@@ -52,16 +67,8 @@ dependencies {
 ```kotlin
 // Ktor
 val client = HttpClient(OkHttp) {
-    expectSuccess = true
     engine {
         addInterceptor(TestInterceptor)
-    }
-    install(ContentNegotiation) {
-        json(
-            Json {
-                ignoreUnknownKeys = true
-            }
-        )
     }
 }
 
@@ -73,24 +80,7 @@ val okHttpClient = OkHttpClient.Builder()
 val retrofit = Retrofit.Builder()
     .baseUrl(baseUrl)
     .client(okHttpClient)
-    .addConverterFactory(GsonConverterFactory.create(gson))
     .build()
-```
-
-### Create a variable with MockWebServerRule in the test class.
-
-```kotlin
-@get:Rule
-var mockWebServer: MockWebServerRule = MockWebServerRule()
-```
-
-### To mock a request, use `register` method.
-
-```kotlin
-mockWebServer.register {
-    expectThat(it).url.path.isEqualTo("/fact")
-    jsonResponse("""{"fact": "Example fact about your cat."}""")
-}
 ```
 
 You can check full example in the [app module](https://github.com/appunite/MockWebServer/tree/main/app/src).
