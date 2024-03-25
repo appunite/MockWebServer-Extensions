@@ -1,4 +1,4 @@
-package com.appunite.mockwebserverextensions.intercept
+package com.appunite.mockwebserver_interceptor
 
 import okhttp3.Interceptor
 import okhttp3.Response

@@ -55,7 +55,7 @@ android {
 dependencies {
 
     androidTestImplementation(project(":mockwebserver-extensions"))
-    implementation(project(":mockwebserver-extensions"))
+    implementation(project(":mockwebserver-interceptor"))
 
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
@@ -67,10 +67,8 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
 
     androidTestImplementation("com.squareup.okhttp3:mockwebserver:4.12.0")
-    androidTestImplementation("io.strikt:strikt-core:0.34.1")
     androidTestImplementation("io.strikt:strikt-mockk:0.34.1")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     androidTestImplementation(platform("androidx.compose:compose-bom:2023.08.00"))
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
 

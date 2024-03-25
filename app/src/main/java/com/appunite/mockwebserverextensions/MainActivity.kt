@@ -18,7 +18,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.appunite.mockwebserverextensions.intercept.TestInterceptor
+import com.appunite.mockwebserver_interceptor.TestInterceptor
 import com.appunite.mockwebserverextensions.ui.theme.MockWebServerTheme
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body

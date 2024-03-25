@@ -1,6 +1,6 @@
 package com.appunite.mockwebserverextensions
 
-import com.appunite.mockwebserverextensions.intercept.TestInterceptor
+import com.appunite.mockwebserver_interceptor.TestInterceptor
 import com.appunite.mockwebserverextensions.intercept.UrlOverrideInterceptor
 import com.appunite.mockwebserverextensions.util.MultipleFailuresError
 import com.appunite.mockwebserverextensions.util.ResponseGenerator
