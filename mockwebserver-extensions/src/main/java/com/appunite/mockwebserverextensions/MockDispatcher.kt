@@ -8,7 +8,7 @@ import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.RecordedRequest
 import java.util.logging.Logger
 
-class MockDispatcher : Dispatcher() {
+class MockDispatcher : Dispatcher(), MockRegistry {
 
     companion object {
         val LOG: Logger = Logger.getLogger(MockDispatcher::class.java.name)
@@ -19,11 +19,11 @@ class MockDispatcher : Dispatcher() {
     private val mocks: MutableList<Mock> = mutableListOf()
     val errors: MutableList<Throwable> = mutableListOf()
 
-    fun register(response: ResponseGenerator) {
+    override fun register(response: ResponseGenerator) {
         mocks.add(Mock(response))
     }
 
-    fun clear() {
+    override fun clear() {
         mocks.clear()
     }
 
