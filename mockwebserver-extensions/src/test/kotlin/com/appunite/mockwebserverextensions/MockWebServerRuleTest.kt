@@ -28,6 +28,7 @@ import org.hamcrest.TypeSafeMatcher
 import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.ExpectedException
+import org.junit.runners.model.MultipleFailureException
 import strikt.api.expectThat
 import strikt.assertions.contains
 import strikt.assertions.first
@@ -80,6 +81,13 @@ class MockWebServerRuleTest {
 
     @Test
     fun testWhenMockIsCleared_requestGetsDefault404() {
+        expectedException.expect(
+            matcher<Any> {
+                expectThat(it).isA<Throwable>().message.isNotNull()
+                    .contains("Request: GET https://example.com/user, there are no mocks")
+            }
+        )
+
         mockWebServerRule.register { _ ->
             MockResponse().setBody("Hello, World!")
         }
@@ -92,7 +100,12 @@ class MockWebServerRuleTest {
 
     @Test
     fun testWhenNoRequestIsMocked_throw404() {
-        val response = executeRequest("https://example.com/not_mocked")
+        mockWebServerRule.register {
+            expectThat(it).url.path.isEqualTo("/mocked404")
+
+            MockResponse().setResponseCode(404)
+        }
+        val response = executeRequest("https://example.com/mocked404")
 
         expectThat(response).code.isEqualTo(404)
     }
@@ -101,9 +114,11 @@ class MockWebServerRuleTest {
     fun testTestFailsAndThereIsSomeMockingIssue_theRootOfTheFailureIsOnTheFirstPlace() {
         expectedException.expect(
             matcher<Any> {
-                expectThat(it).isA<MultipleFailuresError>().message.isNotNull()
-                    .contains("An test exception occurred, but we also found some not mocked requests")
-                expectThat(it).isA<MultipleFailuresError>().get(MultipleFailuresError::failures)
+                expectThat(it).isA<MultipleFailureException>().message.isNotNull()
+                    .contains("There were 2 errors")
+                expectThat(it)
+                    .isA<MultipleFailureException>()
+                    .get("failures") { failures }
                     .first().isA<CustomException>()
             }
         )
@@ -121,8 +136,9 @@ class MockWebServerRuleTest {
                     .contains("Request: GET https://example.com/not_mocked, there are no mocks")
 
                 expectThat(it)
-                    .isA<MultipleFailuresError>()
-                    .get(MultipleFailuresError::failures)
+
+                    .isA<MultipleFailureException>()
+                    .get("failures") { failures }
                     .last()
                     .isA<MultipleFailuresError>()
                     .and {
@@ -154,8 +170,8 @@ class MockWebServerRuleTest {
                 }
 
                 expectThat(it)
-                    .isA<MultipleFailuresError>()
-                    .get(MultipleFailuresError::failures)
+                    .isA<MultipleFailureException>()
+                    .get("failures") { failures }
                     .last()
                     .isA<MultipleFailuresError>()
                     .and {
@@ -174,19 +190,6 @@ class MockWebServerRuleTest {
         executeRequest("https://example.com/not_mocked")
 
         throw CustomException
-    }
-
-    @Test
-    fun testWhenRequestUrlIsDifferentThenMocked_throw404() {
-        mockWebServerRule.register {
-            expectThat(it).url.path.isEqualTo("/different_url")
-
-            MockResponse().setBody("Hello, World!")
-        }
-
-        val response = executeRequest("https://example.com/not_mocked")
-
-        expectThat(response).code.isEqualTo(404)
     }
 
     @Test
