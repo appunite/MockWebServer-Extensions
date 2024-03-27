@@ -20,7 +20,7 @@ class MockDispatcher : Dispatcher(), MockRegistry {
     val errors: MutableList<Throwable> = mutableListOf()
 
     override fun register(response: ResponseGenerator) {
-        mocks.add(Mock(response))
+        mocks.add(0, Mock(response))
     }
 
     override fun clear() {
