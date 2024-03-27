@@ -19,7 +19,7 @@ open class MockWebServerRule(
         val LOG: Logger = Logger.getLogger(MockWebServerRule::class.java.name)
     }
 
-    val mockDispatcher: MockDispatcher = MockDispatcher()
+    var mockDispatcher: MockDispatcher = MockDispatcher()
 
     override fun register(response: ResponseGenerator) = mockDispatcher.register(response)
 
