@@ -34,32 +34,17 @@ repositories {
 Add the dependency:
 ```kotlin
 dependencies {
-    androidTestImplementation 'com.github.appunite:MockWebServer-Extensions:0.1.0'
+    androidTestImplementation 'com.github.appunite.MockWebServer-Extensions:mockwebserver-extensions:0.2.0'
+    implementation 'com.github.appunite.MockWebServer-Extensions:mockwebserver-interceptor:0.2.0'
 }
 ```
 
 ### Add a Network Security Configuration file
 
-#### Add `app/src/debug/res/xml/network_security_config.xml` file.
-
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<network-security-config>
-    <domain-config cleartextTrafficPermitted="true">
-        <domain includeSubdomains="true">localhost</domain>
-    </domain-config>
-</network-security-config>
-```
-
-#### Add `network_security_config.xml` to the debug AndroidManifest.
-
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <application android:networkSecurityConfig="@xml/network_security_config">
-    </application>
-</manifest>
+```kotlin
+dependencies {
+    debugImplementation 'com.github.appunite.MockWebServer-Extensions:mockwebserver-allow-mocking:0.2.0'
+}
 ```
 
 ### Add TestInterceptor to your HTTP Client.

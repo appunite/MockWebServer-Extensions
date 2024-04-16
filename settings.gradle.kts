@@ -17,3 +17,4 @@ rootProject.name = "MockWebServer Extensions"
 include(":app")
 include(":mockwebserver-extensions")
 include(":mockwebserver-interceptor")
+include(":mockwebserver-allow-mocking")
