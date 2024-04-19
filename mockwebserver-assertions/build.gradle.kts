@@ -8,7 +8,7 @@ publishing {
     publications {
         create<MavenPublication>("maven") {
             groupId = "com.github.appunite.MockWebServer-Extensions"
-            artifactId = "mockwebserver-interceptor"
+            artifactId = "mockwebserver-assertions"
             version = "0.2.0"
 
             afterEvaluate {
@@ -24,5 +24,7 @@ java {
 }
 
 dependencies {
+    implementation(project(":mockwebserver-request"))
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
+    implementation("io.strikt:strikt-mockk:0.34.1")
 }

@@ -1,6 +1,6 @@
 package com.appunite.mockwebserverextensions.util
 
-import com.appunite.mockwebserverextensions.Request
+import com.appunite.mockwebserver_request.Request
 import okhttp3.mockwebserver.MockResponse
 import org.intellij.lang.annotations.Language
 

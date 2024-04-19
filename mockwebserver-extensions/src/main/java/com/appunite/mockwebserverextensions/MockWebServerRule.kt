@@ -5,6 +5,7 @@ import com.appunite.mockwebserverextensions.intercept.UrlOverrideInterceptor
 import com.appunite.mockwebserverextensions.util.ResponseGenerator
 import okhttp3.Interceptor
 import okhttp3.internal.closeQuietly
+import okhttp3.mockwebserver.Dispatcher
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.rules.TestWatcher
 import org.junit.runner.Description
@@ -19,28 +20,27 @@ open class MockWebServerRule(
         val LOG: Logger = Logger.getLogger(MockWebServerRule::class.java.name)
     }
 
-    open var mockDispatcher: MockDispatcher = MockDispatcher()
-    open var mockWebServer: MockWebServer? = null
+    val mockDispatcher: MockDispatcher = MockDispatcher()
+    val mockWebServer: MockWebServer = MockWebServer().apply {
+        dispatcher = wrapDispatcher(mockDispatcher)
+    }
 
     override fun register(response: ResponseGenerator) = mockDispatcher.register(response)
 
     override fun clear() = mockDispatcher.clear()
 
     override fun starting(description: Description?) {
-        val server = MockWebServer()
-        server.dispatcher = mockDispatcher
-        TestInterceptor.testInterceptor = interceptor ?: UrlOverrideInterceptor(server.url("/"))
+        TestInterceptor.testInterceptor = interceptor ?: UrlOverrideInterceptor(mockWebServer.url("/"))
         LOG.info("TestInterceptor installed")
-        mockWebServer = server
     }
 
     override fun finished(description: Description) {
         LOG.info("TestInterceptor uninstalled")
         TestInterceptor.testInterceptor = null
 
-        mockWebServer?.closeQuietly()
-        mockWebServer = null
-
+        mockWebServer.closeQuietly()
         MultipleFailureException.assertEmpty(mockDispatcher.errors)
     }
+
+    open fun wrapDispatcher(mockDispatcher: Dispatcher): Dispatcher = mockDispatcher
 }

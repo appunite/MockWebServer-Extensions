@@ -1,6 +1,6 @@
-package com.appunite.mockwebserverextensions.util
+package com.appunite.mockwebserver_assertions
 
-import com.appunite.mockwebserverextensions.Request
+import com.appunite.mockwebserver_request.Request
 import okhttp3.Headers
 import okhttp3.HttpUrl
 import okhttp3.Response

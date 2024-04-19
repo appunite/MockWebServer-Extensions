@@ -55,7 +55,10 @@ android {
 dependencies {
 
     androidTestImplementation(project(":mockwebserver-extensions"))
+    androidTestImplementation(project(":mockwebserver-assertions"))
+    androidTestImplementation(project(":mockwebserver-request"))
     implementation(project(":mockwebserver-interceptor"))
+    debugImplementation(project(":mockwebserver-allow-mocking"))
 
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")

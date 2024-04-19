@@ -1,5 +1,6 @@
 package com.appunite.mockwebserverextensions
 
+import com.appunite.mockwebserver_request.Request
 import com.appunite.mockwebserverextensions.util.MultipleFailuresError
 import com.appunite.mockwebserverextensions.util.ResponseGenerator
 import okhttp3.HttpUrl.Companion.toHttpUrl
