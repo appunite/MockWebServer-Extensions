@@ -42,5 +42,5 @@ open class MockWebServerRule(
         MultipleFailureException.assertEmpty(mockDispatcher.errors)
     }
 
-    open fun wrapDispatcher(mockDispatcher: MockDispatcher): Dispatcher = mockDispatcher
+    open fun wrapDispatcher(mockDispatcher: Dispatcher): Dispatcher = mockDispatcher
 }

@@ -9,7 +9,7 @@ publishing {
         create<MavenPublication>("maven") {
             groupId = "com.github.appunite.MockWebServer-Extensions"
             artifactId = "mockwebserver-extensions"
-            version = "0.1.1"
+            version = "0.2.0"
 
             afterEvaluate {
                 from(components["java"])
@@ -29,10 +29,11 @@ kotlin {
 
 dependencies {
     implementation(project(":mockwebserver-interceptor"))
-    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+    implementation(project(":mockwebserver-request"))
     implementation("com.squareup.okhttp3:mockwebserver:4.12.0")
     implementation("io.strikt:strikt-mockk:0.34.1")
 
+    testImplementation(project(":mockwebserver-assertions"))
     testImplementation("io.mockk:mockk:1.13.5")
     testImplementation("junit:junit:4.13.2")
 }

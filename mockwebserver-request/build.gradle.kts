@@ -8,7 +8,7 @@ publishing {
     publications {
         create<MavenPublication>("maven") {
             groupId = "com.github.appunite.MockWebServer-Extensions"
-            artifactId = "mockwebserver-interceptor"
+            artifactId = "mockwebserver-request"
             version = "0.2.0"
 
             afterEvaluate {

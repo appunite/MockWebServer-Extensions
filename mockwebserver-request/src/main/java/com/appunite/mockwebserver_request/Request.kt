@@ -1,4 +1,4 @@
-package com.appunite.mockwebserverextensions
+package com.appunite.mockwebserver_request
 
 import okhttp3.Headers
 import okhttp3.HttpUrl

@@ -35,11 +35,12 @@ Add the dependency:
 ```kotlin
 dependencies {
     androidTestImplementation 'com.github.appunite.MockWebServer-Extensions:mockwebserver-extensions:0.2.0'
+    androidTestImplementation 'com.github.appunite.MockWebServer-Extensions:mockwebserver-request:0.2.0'
     implementation 'com.github.appunite.MockWebServer-Extensions:mockwebserver-interceptor:0.2.0'
 }
 ```
 
-### Add a Network Security Configuration file
+### Add a Network Security Configuration
 
 ```kotlin
 dependencies {
@@ -67,6 +68,15 @@ val retrofit = Retrofit.Builder()
     .client(okHttpClient)
     .build()
 ```
+
+### Optional Assertions using okhttp
+
+```kotlin
+dependencies {
+    androidTestImplementation 'com.github.appunite.MockWebServer-Extensions:mockwebserver-assertions:0.2.0'
+}
+```
+
 
 You can check full example in the [app module](https://github.com/appunite/MockWebServer/tree/main/app/src).
 And more examples in the [Loudius - Android playground](https://github.com/appunite/Loudius) in the [app-shared-tests module](https://github.com/appunite/Loudius/tree/develop/app-shared-tests/src/main/java/com/appunite/loudius).

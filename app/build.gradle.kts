@@ -55,6 +55,8 @@ android {
 dependencies {
 
     androidTestImplementation(project(":mockwebserver-extensions"))
+    androidTestImplementation(project(":mockwebserver-assertions"))
+    androidTestImplementation(project(":mockwebserver-request"))
     implementation(project(":mockwebserver-interceptor"))
     debugImplementation(project(":mockwebserver-allow-mocking"))
 
