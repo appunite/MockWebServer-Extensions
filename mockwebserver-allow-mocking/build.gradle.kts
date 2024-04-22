@@ -41,7 +41,7 @@ publishing {
         create<MavenPublication>("release") {
             groupId = "com.github.appunite.MockWebServer-Extensions"
             artifactId = "mockwebserver-allow-mocking"
-            version = "0.2.0"
+            version = "0.2.2"
 
             afterEvaluate {
                 from(components["release"])

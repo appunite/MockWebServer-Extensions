@@ -34,9 +34,9 @@ repositories {
 Add the dependency:
 ```kotlin
 dependencies {
-    androidTestImplementation 'com.github.appunite.MockWebServer-Extensions:mockwebserver-extensions:0.2.1'
-    androidTestImplementation 'com.github.appunite.MockWebServer-Extensions:mockwebserver-request:0.2.1'
-    implementation 'com.github.appunite.MockWebServer-Extensions:mockwebserver-interceptor:0.2.1'
+    androidTestImplementation 'com.github.appunite.MockWebServer-Extensions:mockwebserver-extensions:0.2.2'
+    androidTestImplementation 'com.github.appunite.MockWebServer-Extensions:mockwebserver-request:0.2.2'
+    implementation 'com.github.appunite.MockWebServer-Extensions:mockwebserver-interceptor:0.2.2'
 }
 ```
 
@@ -44,7 +44,7 @@ dependencies {
 
 ```kotlin
 dependencies {
-    debugImplementation 'com.github.appunite.MockWebServer-Extensions:mockwebserver-allow-mocking:0.2.1'
+    debugImplementation 'com.github.appunite.MockWebServer-Extensions:mockwebserver-allow-mocking:0.2.2'
 }
 ```
 
@@ -73,7 +73,7 @@ val retrofit = Retrofit.Builder()
 
 ```kotlin
 dependencies {
-    androidTestImplementation 'com.github.appunite.MockWebServer-Extensions:mockwebserver-assertions:0.2.1'
+    androidTestImplementation 'com.github.appunite.MockWebServer-Extensions:mockwebserver-assertions:0.2.2'
 }
 ```
 
