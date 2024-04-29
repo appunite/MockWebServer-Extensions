@@ -21,17 +21,28 @@ open class MockWebServerRule(
     }
 
     val mockDispatcher: MockDispatcher = MockDispatcher()
+    private val onOffInternetSimulator = OnOffInternetSimulator(mockDispatcher)
     val mockWebServer: MockWebServer = MockWebServer().apply {
-        dispatcher = wrapDispatcher(mockDispatcher)
+        dispatcher = wrapDispatcher(onOffInternetSimulator)
     }
+
+    open fun simulateNetworkDown() = onOffInternetSimulator.simulateNetworkDown()
+
+    open fun simulateNetworkUp() = onOffInternetSimulator.simulateNetworkUp()
+
+    val server: MockWebServer get() = mockWebServer
 
     override fun register(response: ResponseGenerator) = mockDispatcher.register(response)
 
     override fun clear() = mockDispatcher.clear()
 
     override fun starting(description: Description?) {
-        TestInterceptor.testInterceptor = interceptor ?: UrlOverrideInterceptor(mockWebServer.url("/"))
+        installMockServer()
         LOG.info("TestInterceptor installed")
+    }
+
+    open fun installMockServer() {
+        TestInterceptor.testInterceptor = interceptor ?: UrlOverrideInterceptor(mockWebServer.url("/"))
     }
 
     override fun finished(description: Description) {

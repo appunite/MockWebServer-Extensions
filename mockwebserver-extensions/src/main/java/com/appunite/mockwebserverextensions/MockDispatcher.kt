@@ -32,13 +32,12 @@ class MockDispatcher : Dispatcher(), MockRegistry {
         try {
             val mockRequest = try {
                 Request(
-                    url = (
-                            request.getHeader("X-Test-Original-Url")
-                                ?: throw Exception("No X-Test-Original-Url header, problem with mocker")
-                            ).toHttpUrl(),
+                    url =
+                    request.getHeader("X-Test-Original-Url")?.toHttpUrl()
+                        ?: request.requestUrl!!,
                     headers = request.headers.newBuilder().removeAll("X-Test-Original-Url").build(),
                     method = request.method ?: throw Exception("Nullable method in the request"),
-                    body = request.body
+                    body = request.body,
                 )
             } catch (e: Exception) {
                 throw Exception("Request: $request, is incorrect", e)
