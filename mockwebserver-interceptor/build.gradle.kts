@@ -1,6 +1,6 @@
 plugins {
     id("java-library")
-    id("org.jetbrains.kotlin.jvm")
+    alias(libs.plugins.kotlin.jvm)
     id("maven-publish")
 }
 
@@ -9,7 +9,7 @@ publishing {
         create<MavenPublication>("maven") {
             groupId = "com.github.appunite.MockWebServer-Extensions"
             artifactId = "mockwebserver-interceptor"
-            version = "0.3.0"
+            version = libs.versions.projectVersion.get()
 
             afterEvaluate {
                 from(components["java"])
@@ -19,10 +19,14 @@ publishing {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
+kotlin {
+    jvmToolchain(libs.versions.javaVersion.get().toInt())
 }
 
 dependencies {
-    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+    implementation(libs.okhttp)
 }
