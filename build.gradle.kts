@@ -6,3 +6,13 @@ plugins {
     alias(libs.plugins.kotlin.serialization) apply false
     alias(libs.plugins.android.library) apply false
 }
+
+// Configure Java toolchain for all projects
+allprojects {
+    // Configure Kotlin compiler options
+    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+        kotlinOptions {
+            jvmTarget = libs.versions.javaVersion.get()
+        }
+    }
+}

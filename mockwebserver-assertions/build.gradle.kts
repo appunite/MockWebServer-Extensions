@@ -23,10 +23,6 @@ java {
     targetCompatibility = JavaVersion.VERSION_11
 }
 
-kotlin {
-    jvmToolchain(libs.versions.javaVersion.get().toInt())
-}
-
 dependencies {
     implementation(project(":mockwebserver-request"))
     implementation(libs.okhttp)
