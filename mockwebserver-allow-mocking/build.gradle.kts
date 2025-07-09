@@ -1,15 +1,15 @@
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
     id("maven-publish")
 }
 
 android {
     namespace = "com.appunite.mockwebserver_allow_mocking"
-    compileSdk = 34
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        minSdk = 23
+        minSdk = libs.versions.minSdk.get().toInt()
     }
 
     buildTypes {
@@ -18,11 +18,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
 }
 
@@ -31,7 +31,7 @@ publishing {
         create<MavenPublication>("release") {
             groupId = "com.github.appunite.MockWebServer-Extensions"
             artifactId = "mockwebserver-allow-mocking"
-            version = "0.3.0"
+            version = libs.versions.projectVersion.get()
 
             afterEvaluate {
                 from(components["release"])
