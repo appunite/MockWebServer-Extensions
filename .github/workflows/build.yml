@@ -35,3 +35,11 @@ jobs:
 
     - name: Build with Gradle
       run: ./gradlew build check
+
+    - name: Run Android Tests
+      uses: reactivecircus/android-emulator-runner@v2
+      with:
+        api-level: 29
+        arch: x86_64
+        profile: pixel
+        script: ./gradlew app:connectedCheck
