@@ -125,3 +125,13 @@ The project uses Gradle version catalogs (libs.versions.toml) for dependency man
 1. **Response Generation**: Use the `ResponseGenerator` functional interface to create mock responses
 2. **Request Assertions**: Use the assertion extensions from mockwebserver-assertions to verify request properties
 3. **Network Simulation**: Use `simulateNetworkDown()` and `simulateNetworkUp()` methods to test network failure scenarios
+
+## For AI: Generating a Pull Request
+
+To generate a pull request description:
+
+1.  Read the content of the pull request template file located at `.github/PULL_REQUEST_TEMPLATE.md`.
+2.  Get the code changes by running the command `git diff origin/HEAD...HEAD`.
+3.  Analyze the changes and fill out the template with a relevant title, description, and checklist selections.
+4.  Save the final output to a temporary file named `pr-description.tmp.md`.
+5.  Ensure at the first line of `pr-description.tmp.md` there is a title of the pull request. 

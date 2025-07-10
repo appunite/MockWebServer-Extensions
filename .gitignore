@@ -8,3 +8,4 @@
 .externalNativeBuild
 .cxx
 local.properties
+pr-description.tmp.md
