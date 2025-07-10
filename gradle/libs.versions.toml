@@ -1,7 +1,7 @@
 [versions]
 # Plugins
 androidGradlePlugin = "8.11.0"
-kotlinPlugin = "1.9.0"
+kotlinPlugin = "2.2.0"
 
 # Libraries
 okhttp = "4.12.0"
