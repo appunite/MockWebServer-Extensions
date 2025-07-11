@@ -36,6 +36,9 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew build check
 
+    - name: Verify publishing works
+      run: ./gradlew publishToMavenLocal
+
     - name: Enable KVM for faster android tests
       run: |
         echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules

@@ -29,9 +29,7 @@ android {
 publishing {
     publications {
         create<MavenPublication>("release") {
-            groupId = "com.github.appunite.MockWebServer-Extensions"
             artifactId = "mockwebserver-allow-mocking"
-            version = libs.versions.projectVersion.get()
 
             afterEvaluate {
                 from(components["release"])

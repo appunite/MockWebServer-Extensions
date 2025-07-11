@@ -16,9 +16,6 @@ ktor = "3.2.1"
 kotlinxSerialization = "1.5.1"
 mockk = "1.13.5"
 
-# Project
-projectVersion = "0.3.0"
-
 # SDK
 compileSdk = "34"
 minSdk = "23"

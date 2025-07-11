@@ -7,9 +7,7 @@ plugins {
 publishing {
     publications {
         create<MavenPublication>("maven") {
-            groupId = "com.github.appunite.MockWebServer-Extensions"
             artifactId = "mockwebserver-request"
-            version = libs.versions.projectVersion.get()
 
             afterEvaluate {
                 from(components["java"])
