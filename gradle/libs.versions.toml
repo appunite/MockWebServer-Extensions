@@ -4,7 +4,7 @@ androidGradlePlugin = "8.11.0"
 kotlinPlugin = "2.2.0"
 
 # Libraries
-okhttp = "4.12.0"
+okhttp = "5.1.0"
 striktMockk = "0.34.1"
 junit = "4.13.2"
 androidxJunit = "1.2.1"
