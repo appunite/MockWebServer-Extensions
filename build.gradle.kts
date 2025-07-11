@@ -15,4 +15,14 @@ allprojects {
             jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.fromTarget(libs.versions.javaVersion.get()))
         }
     }
+
+    plugins.withId("maven-publish") {
+        configure<PublishingExtension> {
+            // Set version for all publications
+            publications.withType<MavenPublication> {
+                groupId = "com.github.appunite.MockWebServer-Extensions"
+                version = System.getenv("version").orEmpty().ifEmpty { "0.0.1-SNAPSHOT" }
+            }
+        }
+    }
 }
