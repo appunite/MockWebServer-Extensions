@@ -12,7 +12,7 @@ androidxCore = "1.12.0"
 androidxLifecycle = "2.7.0"
 androidxActivity = "1.8.2"
 composeBom = "2023.08.00"
-ktor = "2.3.9"
+ktor = "3.2.1"
 kotlinxSerialization = "1.5.1"
 mockk = "1.13.5"
 
