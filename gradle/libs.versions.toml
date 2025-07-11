@@ -1,13 +1,13 @@
 [versions]
 # Plugins
 androidGradlePlugin = "8.11.0"
-kotlinPlugin = "1.9.0"
+kotlinPlugin = "2.2.0"
 
 # Libraries
 okhttp = "4.12.0"
 striktMockk = "0.34.1"
 junit = "4.13.2"
-androidxJunit = "1.1.5"
+androidxJunit = "1.2.1"
 androidxCore = "1.12.0"
 androidxLifecycle = "2.7.0"
 androidxActivity = "1.8.2"
@@ -23,7 +23,7 @@ projectVersion = "0.3.0"
 compileSdk = "34"
 minSdk = "23"
 targetSdk = "34"
-javaVersion = "11"
+javaVersion = "17"
 
 [libraries]
 # OkHttp
@@ -66,3 +66,4 @@ android-library = { id = "com.android.library", version.ref = "androidGradlePlug
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlinPlugin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlinPlugin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlinPlugin" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlinPlugin" }
