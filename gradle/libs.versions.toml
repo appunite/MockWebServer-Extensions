@@ -23,7 +23,7 @@ projectVersion = "0.3.0"
 compileSdk = "34"
 minSdk = "23"
 targetSdk = "34"
-javaVersion = "11"
+javaVersion = "17"
 
 [libraries]
 # OkHttp
