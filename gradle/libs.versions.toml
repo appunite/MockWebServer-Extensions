@@ -5,7 +5,7 @@ kotlinPlugin = "2.2.0"
 
 # Libraries
 okhttp = "5.1.0"
-striktMockk = "0.34.1"
+striktMockk = "0.35.1"
 junit = "4.13.2"
 androidxJunit = "1.2.1"
 androidxCore = "1.12.0"
