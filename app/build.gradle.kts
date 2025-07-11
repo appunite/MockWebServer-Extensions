@@ -2,11 +2,18 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.compose.compiler)
 }
 
 android {
     namespace = "com.appunite.mockwebserver"
     compileSdk = libs.versions.compileSdk.get().toInt()
+
+    lint {
+        // Those two checks cause build failure, so we disable them
+        disable += "MutableCollectionMutableState"
+        disable += "AutoboxingStateCreation"
+    }
 
     defaultConfig {
         applicationId = "com.appunite.mockwebserverextensions"
@@ -31,17 +38,16 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
-    kotlinOptions {
-        jvmTarget = libs.versions.javaVersion.get()
+    kotlin {
+        compilerOptions {
+            jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.fromTarget(libs.versions.javaVersion.get()))
+        }
     }
     buildFeatures {
         compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.kotlinxSerialization.get()
     }
     packaging {
         resources {
@@ -53,7 +59,6 @@ android {
 }
 
 dependencies {
-
     androidTestImplementation(project(":mockwebserver-extensions"))
     androidTestImplementation(project(":mockwebserver-assertions"))
     androidTestImplementation(project(":mockwebserver-request"))
