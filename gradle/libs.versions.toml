@@ -14,7 +14,7 @@ androidxActivity = "1.8.2"
 composeBom = "2023.08.00"
 ktor = "3.2.1"
 kotlinxSerialization = "1.5.1"
-mockk = "1.13.5"
+mockk = "1.14.4"
 
 # SDK
 compileSdk = "34"
